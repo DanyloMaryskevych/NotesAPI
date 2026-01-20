@@ -68,6 +68,14 @@ resource "aws_ecs_task_definition" "this" {
         }
       ]
 
+      environment = [
+        { name = "DB_HOST", value = var.db_host },
+        { name = "DB_NAME", value = var.db_name },
+        { name = "DB_USER", value = var.db_username },
+        { name = "DB_PORT", value = "5432" },
+        { name = "AWS_REGION", value = var.region }
+      ]
+
       logConfiguration = {
         logDriver = "awslogs"
         options   = {

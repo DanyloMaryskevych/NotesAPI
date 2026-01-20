@@ -76,3 +76,13 @@ variable "db_username" {
   type        = string
   description = "Database username used by the application to connect to the database"
 }
+
+variable "db_host" {
+  type        = string
+  description = "RDS endpoint hostname"
+}
+
+variable "db_name" {
+  type        = string
+  description = "Database name"
+}

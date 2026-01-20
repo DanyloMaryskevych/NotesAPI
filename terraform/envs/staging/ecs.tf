@@ -13,6 +13,8 @@ module "ecs" {
 
   db_resource_id = module.rds.resource_id
   db_username    = var.db_username
+  db_host        = module.rds.address
+  db_name        = var.db_name
 
   vpc_id     = module.vpc.id
   subnet_ids = module.vpc.private_subnet_ids
