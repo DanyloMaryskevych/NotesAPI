@@ -18,3 +18,4 @@ terraform/**/.terraform.lock.hcl
 
 # OS
 .DS_Store
+terraform/envs/staging/bastion.pem
