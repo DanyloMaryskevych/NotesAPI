@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getPrisma } from '@/lib/prisma';
+import { db, schema } from '@/db';
+import { eq } from 'drizzle-orm';
 
 type Params = { params: Promise<{ id: string }> };
 
 export async function GET(request: NextRequest, { params }: Params) {
   try {
     const { id } = await params;
-    const prisma = await getPrisma();
-    const note = await prisma.note.findUnique({
-      where: { id },
-    });
+    const [note] = await db.select().from(schema.notes).where(eq(schema.notes.id, id));
 
     if (!note) {
       return NextResponse.json(
@@ -34,11 +32,18 @@ export async function PUT(request: NextRequest, { params }: Params) {
     const body = await request.json();
     const { title, content } = body;
 
-    const prisma = await getPrisma();
-    const note = await prisma.note.update({
-      where: { id },
-      data: { title, content },
-    });
+    const [note] = await db
+      .update(schema.notes)
+      .set({ title, content, updatedAt: new Date() })
+      .where(eq(schema.notes.id, id))
+      .returning();
+
+    if (!note) {
+      return NextResponse.json(
+        { error: 'Note not found' },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json(note);
   } catch (error) {
@@ -53,10 +58,17 @@ export async function PUT(request: NextRequest, { params }: Params) {
 export async function DELETE(request: NextRequest, { params }: Params) {
   try {
     const { id } = await params;
-    const prisma = await getPrisma();
-    await prisma.note.delete({
-      where: { id },
-    });
+    const [deleted] = await db
+      .delete(schema.notes)
+      .where(eq(schema.notes.id, id))
+      .returning();
+
+    if (!deleted) {
+      return NextResponse.json(
+        { error: 'Note not found' },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

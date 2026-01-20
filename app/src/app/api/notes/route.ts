@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getPrisma } from '@/lib/prisma';
+import { db, schema } from '@/db';
+import { desc } from 'drizzle-orm';
 
 export async function GET() {
   try {
-    const prisma = await getPrisma();
-    const notes = await prisma.note.findMany({
-      orderBy: { createdAt: 'desc' },
-    });
+    const notes = await db.select().from(schema.notes).orderBy(desc(schema.notes.createdAt));
     return NextResponse.json(notes);
   } catch (error) {
     console.error('Failed to fetch notes:', error);
@@ -29,10 +27,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const prisma = await getPrisma();
-    const note = await prisma.note.create({
-      data: { title, content },
-    });
+    const [note] = await db.insert(schema.notes).values({ title, content }).returning();
 
     return NextResponse.json(note, { status: 201 });
   } catch (error) {
