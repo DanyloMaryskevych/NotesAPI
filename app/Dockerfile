@@ -40,6 +40,10 @@ COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modul
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/prisma ./node_modules/prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
 
+# Copy AWS SDK for IAM token generation in start script
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@aws-sdk ./node_modules/@aws-sdk
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@smithy ./node_modules/@smithy
+
 # Copy startup script
 COPY --chown=nextjs:nodejs start.sh ./
 RUN chmod +x start.sh
