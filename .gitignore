@@ -1,0 +1,20 @@
+# App
+app/node_modules/
+app/.next/
+app/.env
+app/.env.local
+app/*.tsbuildinfo
+app/next-env.d.ts
+
+# Terraform
+terraform/**/*.tfstate
+terraform/**/*.tfstate.*
+terraform/**/.terraform/
+terraform/**/.terraform.lock.hcl
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
