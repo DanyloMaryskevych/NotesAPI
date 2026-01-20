@@ -22,4 +22,4 @@ rds_allocated_storage_gb = 20
 # OIDC
 github_org  = "DanyloMaryskevych"
 github_repo = "NotesAPI"
-github_ref  = "ref:refs/heads/main"
+github_ref  = "ref:refs/heads/master"
