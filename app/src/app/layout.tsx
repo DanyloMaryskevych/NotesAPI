@@ -44,7 +44,7 @@ export default function RootLayout({
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: '1.25rem',
-                boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)',
+                boxShadow: '0 4px 12px rgba(255, 215, 0, 0.5)',
               }}>
                 📝
               </div>

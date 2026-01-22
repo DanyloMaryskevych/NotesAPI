@@ -143,8 +143,9 @@ export default function Home() {
     },
     primaryButton: {
       background: 'var(--gradient)',
-      color: 'white',
-      boxShadow: '0 4px 14px rgba(99, 102, 241, 0.4)',
+      color: '#0a1628',
+      fontWeight: 700,
+      boxShadow: '0 4px 14px rgba(0, 87, 184, 0.4)',
     },
     secondaryButton: {
       background: 'var(--border)',
@@ -202,9 +203,9 @@ export default function Home() {
           ...styles.card,
           marginBottom: '2.5rem',
           background: editingId
-            ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%)'
+            ? 'linear-gradient(135deg, rgba(0, 87, 184, 0.15) 0%, rgba(255, 215, 0, 0.1) 100%)'
             : 'var(--card-bg)',
-          borderColor: editingId ? 'rgba(99, 102, 241, 0.3)' : 'var(--border)',
+          borderColor: editingId ? 'rgba(255, 215, 0, 0.4)' : 'var(--border)',
         }}
       >
         <div style={{ marginBottom: '1.25rem' }}>
@@ -235,7 +236,7 @@ export default function Home() {
             }}
             onFocus={(e) => {
               e.target.style.borderColor = 'var(--primary)';
-              e.target.style.boxShadow = '0 0 0 3px rgba(99, 102, 241, 0.2)';
+              e.target.style.boxShadow = '0 0 0 3px rgba(255, 215, 0, 0.3)';
             }}
             onBlur={(e) => {
               e.target.style.borderColor = 'var(--border)';
@@ -255,7 +256,7 @@ export default function Home() {
             }}
             onFocus={(e) => {
               e.target.style.borderColor = 'var(--primary)';
-              e.target.style.boxShadow = '0 0 0 3px rgba(99, 102, 241, 0.2)';
+              e.target.style.boxShadow = '0 0 0 3px rgba(255, 215, 0, 0.3)';
             }}
             onBlur={(e) => {
               e.target.style.borderColor = 'var(--border)';
@@ -275,12 +276,12 @@ export default function Home() {
               onMouseOver={(e) => {
                 if (!saving && title.trim()) {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(99, 102, 241, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 215, 0, 0.5)';
                 }
               }}
               onMouseOut={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 14px rgba(99, 102, 241, 0.4)';
+                e.currentTarget.style.boxShadow = '0 4px 14px rgba(255, 215, 0, 0.4)';
               }}
             >
               {saving ? (
